@@ -76,7 +76,7 @@ function downloadFile(app, installer, bar, workFolder) {
         JSON.stringify(localApps)
       );
     } catch (err) {
-      console.error(err);
+      console.log('localAppManifest.json not present');
     }
     bar.stop();
     downloadQueue = downloadQueue.filter((i) => i !== installerName);
