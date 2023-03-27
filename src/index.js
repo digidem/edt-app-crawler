@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Read manifest
 const { readFileSync, writeFileSync } = require("fs");
 const path = require("path");
@@ -5,6 +7,7 @@ const wget = require("wget-improved");
 const cliProgress = require("cli-progress");
 const colors = require("colors");
 const mkdirp = require("mkdirp");
+const args = require('yargs').argv;
 const parseAppsManifest = require("./parseAppsManifest");
 
 let downloadQueue = [];
@@ -39,8 +42,9 @@ function formatter(options, params, { payload }) {
 
 function downloadFile(app, installer, bar, workFolder) {
   const installerName = `${app.slug}-${app.version}-${installer.platform}.${installer.extension}`;
-  mkdirp.sync(`${workFolder}/apps`);
-  const outputDir = `${workFolder}/apps/${installerName}`;
+  const appFolder = args.path || `${workFolder}/apps`
+  mkdirp.sync(appFolder);
+  const outputDir = `${appFolder}/${installerName}`;
   const src = installer.link;
   /* TODO: compare versions between local and remote and only download if different */
   const download = wget.download(src, outputDir, {});
