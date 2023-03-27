@@ -4,7 +4,7 @@ module.exports = (installers) => {
     localAppManifest = require("./localAppManifest.json");
   } catch (err) {
     /* eslint-disable no-console */
-    console.log("Cannot find local app manifest", err);
+    console.log("Cannot find local app manifest");
   }
   return installers.map((i) => {
     const localInstallerDir = localAppManifest.filter(
