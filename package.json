@@ -1,7 +1,7 @@
 {
   "name": "edt-app-crawler",
   "license": "CC0-1.0",
-  "version": "v1.0.2",
+  "version": "v1.0.3",
   "bin": {
     "app-crawler": "./src/index.js"
   },

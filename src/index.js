@@ -7,8 +7,9 @@ const wget = require("wget-improved");
 const cliProgress = require("cli-progress");
 const colors = require("colors");
 const mkdirp = require("mkdirp");
-const args = require('yargs').argv;
+const args = require("yargs").argv;
 const parseAppsManifest = require("./parseAppsManifest");
+const appManifest = require("./appManifest.json");
 
 let downloadQueue = [];
 
@@ -42,7 +43,7 @@ function formatter(options, params, { payload }) {
 
 function downloadFile(app, installer, bar, workFolder) {
   const installerName = `${app.slug}-${app.version}-${installer.platform}.${installer.extension}`;
-  const appFolder = args.path || `${workFolder}/apps`
+  const appFolder = `${workFolder}/apps`;
   mkdirp.sync(appFolder);
   const outputDir = `${appFolder}/${installerName}`;
   const src = installer.link;
@@ -76,7 +77,7 @@ function downloadFile(app, installer, bar, workFolder) {
         JSON.stringify(localApps)
       );
     } catch (err) {
-      console.log('localAppManifest.json not present');
+      console.log("localAppManifest.json not present");
     }
     bar.stop();
     downloadQueue = downloadQueue.filter((i) => i !== installerName);
@@ -94,12 +95,8 @@ function downloadFile(app, installer, bar, workFolder) {
 console.log(
   "\n Starting download of installers for all applications in the appManifest.json \n"
 );
-const workFolder = path.join(process.cwd(), "src");
-const appManifest = readFileSync(path.join(workFolder, "/appManifest.json"), {
-  encoding: "utf8",
-  flag: "r",
-});
-const apps = JSON.parse(appManifest);
+const workFolder = args.path || path.join(process.cwd(), "src");
+const apps = appManifest;
 try {
   writeFileSync(`${workFolder}/localAppManifest.json`, JSON.stringify([]));
 } catch (err) {
