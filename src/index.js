@@ -69,8 +69,8 @@ function downloadFile(app, installer, bar, workFolder) {
       localApps.push({
         message,
         src,
-        version: app.version,
         dir: `/${installerName}`,
+        ...app,
       });
       writeFileSync(
         `${workFolder}/localAppManifest.json`,
