@@ -15,8 +15,7 @@ module.exports = (
   test
 ) => {
   const installerName = `${app.slug}-${app.version}-${platform}.${extension}`;
-  const appFolder = `${workFolder}/apps`;
-  const outputDir = `${appFolder}/${installerName}`;
+  const outputDir = `${workFolder}/${installerName}`;
   const src = test ? "http://localhost:9615" : installer;
   if (test) {
     console.log("Download test", src);
@@ -33,7 +32,7 @@ module.exports = (
   download.on("end", (message) => {
     try {
       const localAppManifest = readFileSync(
-        path.join(workFolder, "/apps/localAppManifest.json"),
+        path.join(workFolder, "/localAppManifest.json"),
         {
           encoding: "utf8",
           flag: "r",
@@ -41,23 +40,23 @@ module.exports = (
       );
       const localApps = JSON.parse(localAppManifest);
       const index = localApps.map((i) => i.name).indexOf(app.name);
-      const installer = {
+      const localInstaller = {
         file: `/${installerName}`,
         platform,
         extension,
+        src: installer,
       };
       if (index !== -1) {
-        localApps[index].localInstallers.push(installer);
+        localApps[index].localInstallers.push(localInstaller);
       } else {
         localApps.push({
           message,
-          src,
-          localInstallers: [installer],
+          localInstallers: [localInstaller],
           ...app,
         });
       }
       writeFileSync(
-        `${workFolder}/apps/localAppManifest.json`,
+        `${workFolder}/localAppManifest.json`,
         JSON.stringify(localApps)
       );
     } catch (err) {

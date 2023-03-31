@@ -31,11 +31,11 @@ const multibar = new cliProgress.MultiBar(
 console.log(
   "\n Starting download of installers for all applications in the appManifest.json \n"
 );
-const workFolder = args.path || path.join(process.cwd(), "src");
+const workFolder = args.path || path.join(process.cwd(), "src/apps");
 const apps = appManifest;
 try {
-  mkdirp.sync(`${workFolder}/apps/`);
-  writeFileSync(`${workFolder}/apps/localAppManifest.json`, JSON.stringify([]));
+  mkdirp.sync(`${workFolder}`);
+  writeFileSync(`${workFolder}/localAppManifest.json`, JSON.stringify([]));
 } catch (err) {
   console.error(err);
 }
