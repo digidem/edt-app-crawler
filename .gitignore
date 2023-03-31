@@ -1,6 +1,5 @@
 # Logs
 src/apps
-src/localAppManifest.json
 logs
 *.log
 npm-debug.log*
