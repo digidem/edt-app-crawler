@@ -14,9 +14,9 @@
     "slug": "mapeo",
     "icon": "https://github.com/digidem/mapeo-mobile/raw/develop/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png",
     "description": "Mapeo is a free digital toolset for documenting, monitoring, and mapping many types of data.",
-    "version": "v5.6.0",
+    "version": "v5.6.1",
     "installers": [
-      "https://github.com/digidem/mapeo-mobile/releases/download/v5.4.7/mapeo-v5.4.7.apk",
+      "https://github.com/digidem/mapeo-mobile/releases/download/v5.6.1/mapeo-v5.6.1.apk",
       "https://github.com/digidem/mapeo-desktop/releases/download/v5.6.0/Install_Mapeo_v5.6.0_linux.AppImage",
       "https://github.com/digidem/mapeo-desktop/releases/download/v5.6.0/Install_Mapeo_v5.6.0_linux.deb",
       "https://github.com/digidem/mapeo-desktop/releases/download/v5.6.0/Install_Mapeo_v5.6.0_mac.dmg",
